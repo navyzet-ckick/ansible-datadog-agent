@@ -1,6 +1,6 @@
 - hosts: datadoghq_agent
   roles:
-    - Datadog.datadog
+    - datadog.datadog
   vars:
     become: yes
     #datadog_api_key: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
