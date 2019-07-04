@@ -1,0 +1,56 @@
+- hosts: datadoghq_agent
+  roles:
+    - Datadog.datadog
+  vars:
+    become: yes
+    #datadog_api_key: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    datadog_agent_version: "1:6.0.0-1" # for apt-based platforms, use a `6.0.0-1` format on yum-based platforms
+    datadog_config:
+      #tags: "mytag0, mytag1"
+      log_level: INFO
+      apm_config:
+        enabled: true
+        max_traces_per_second: 10
+      logs_enabled: true  # log collection is available on agent 6
+    #datadog_checks:
+    #  process:
+    #    init_config:
+    #    instances:
+    #      - name: ssh
+    #        search_string: ['ssh', 'sshd' ]
+    #      - name: syslog
+    #        search_string: ['rsyslog' ]
+    #        cpu_check_interval: 0.2
+    #        exact_match: true
+    #        ignore_denied_access: true
+    #  ssh_check:
+    #    init_config:
+    #    instances:
+    #      - host: localhost
+    #        port: 22
+    #        username: root
+    #        password: changeme
+    #        sftp_check: True
+    #        private_key_file:
+    #        add_missing_keys: True
+    #  nginx:
+    #    init_config:
+    #    instances:
+    #      - nginx_status_url: http://example.com/nginx_status/
+    #        tags:
+    #          - instance:foo
+    #      - nginx_status_url: http://example2.com:1234/nginx_status/
+    #        tags:
+    #          - instance:bar
+    #    #Log collection is available on agent 6
+    #    logs:
+    #      - type: file
+    #        path: /var/log/access.log
+    #        service: myapp
+    #        source: nginx
+    #        sourcecategory: http_web_access
+    #      - type: file
+    #        path: /var/log/error.log
+    #        service: nginx
+    #        source: nginx
+    #        sourcecategory: http_web_access
